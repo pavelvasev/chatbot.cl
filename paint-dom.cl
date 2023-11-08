@@ -1,6 +1,6 @@
 ////////////////////////////////// визуализация чата
 
-import dom="dom"
+import dom="dom" cb="./main.cl"
 
 mixin "tree_lift"
 process "chat_styles" {
@@ -73,10 +73,10 @@ process "show_chat_msg" {
        }
        else  // экранирование ответов бота - F-CHAT-PASTE-COMMENT
        if (msg.type == "reply")
-          content = `<span style='font-size:0'>${COMMENT_SYMBOL} ответ:</span> ` + content
+          content = `<span style='font-size:0'>${cb.COMMENT_SYMBOL} ответ:</span> ` + content
        else
        if (msg.type == "error")
-          content = `<span style='font-size:0'>${COMMENT_SYMBOL} ошибка:</span> ` + content
+          content = `<span style='font-size:0'>${cb.COMMENT_SYMBOL} ошибка:</span> ` + content
        return {type: msg.type, content, id: msg.id}
   :}
 
