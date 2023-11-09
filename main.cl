@@ -26,6 +26,9 @@
 */
 
 // F-CHAT-COMMENT
+// todo: это по идее параметр бота и все. И ему кстати такую команду можно добавить. Пользователь сможет добавить.
+// а для чата - параметры "добавка в ответах бота" будет лучше.
+// итого этот COMMENT_SYMBOL надо вообще убрать.
 COMMENT_SYMBOL : const '//'
 
 mixin "tree_node"
@@ -65,7 +68,15 @@ process "expression_bot" {
       }
 
       let lines = text.split(/[\n;]/);
-      return process_command( lines,args );
+      let id
+      if (lines.length > 1) 
+          id = chat.get().log("Выполняю выражение...")
+
+      let q = process_command( lines,args );
+
+      //Promise.resolve(q).then( () => { if (id) chat.get().delete(id) } )
+
+      return q;
   :}
 
   func "translate_to_gui" {: code |
