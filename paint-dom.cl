@@ -112,7 +112,7 @@ process "show_chat_messages" {
     //chat_message := apply {: c | console.log('ggg',c.message); return c.message :} @chat
     func "append_message" {: msg |         
          let m = create_show_chat_msg({msg})
-         //console.log("appending message",vmsg)
+         //console.log("appending message",msg)
          show_messages.append( m )
 
          // прокрутка вниз.. но надо бы еще проверять что пользователь не откатил наверх
@@ -124,6 +124,8 @@ process "show_chat_messages" {
     :}
 
     react @chat.message @append_message
+
+    //react @chat.message {: msg | console.log("painter: see chat message",msg) :}
 
     react @chat.update_message {: newmsg |
        let c = show_messages.children.get()

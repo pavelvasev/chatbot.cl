@@ -31,6 +31,7 @@
 // итого этот COMMENT_SYMBOL надо вообще убрать.
 COMMENT_SYMBOL : const '//'
 
+// записи для бота-сборщика.
 mixin "tree_node"
 process "bot_command" {
   in {
@@ -43,6 +44,10 @@ process "bot_command" {
 }
 
 // бот выражений
+/* выполняет набор команд по очереди.
+   если команда возвращает then-able объект, 
+   то ждет его завершения перед переходом к следующей команде
+*/
 mixin "tree_node"
 process "expression_bot" {
   in {
@@ -62,6 +67,7 @@ process "expression_bot" {
         let line = lines[0];
         //console.log("chat: sending command",line)
         return Promise.resolve( the_next_bot.cmd(line,args) ).then( x => {
+          if (lines.length == 1) return x;
           //console.log("chat: command resolved, result is",x)
           return process_command( lines.slice(1) )
         })
@@ -182,6 +188,7 @@ process "bot_v1" {
 }
 */
 
+// а не проще ли было бы сделать 3-4 вида каналов: cmd, reply, error.. ?
 process "chat" {
 
   in {
@@ -215,6 +222,7 @@ process "chat" {
   	let msg = { type: 'cmd', text, args, id: self.counter++ }
     //console.log("chat: cmd:",msg)
 
+    //console.log("chat msg submitting msg=",msg)
   	message.submit( msg ) // там ее порисуют
   	// это для истории. но вопрос надо ли
   	history.submit( [...history.get(), msg] )
@@ -243,6 +251,7 @@ process "chat" {
   	// для визуализации    
   	let msg = { type: 'reply', text, args, id: self.counter++ }
     //console.log("chat: reply:",msg)
+    //console.log("chat msg submitting reply=",msg)
   	message.submit( msg ) // там ее порисуют
   	// это для истории. но вопрос надо ли    
   	history.submit( [...history.get(), msg] )
