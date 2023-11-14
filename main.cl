@@ -153,6 +153,8 @@ process "bot" {
       return
     }
 
+    console.log("bot: calling fn",fn)
+
     return fn( text, ...(args || []) )
   :}
 }
@@ -220,7 +222,9 @@ process "chat" {
 
   	// для визуализации
   	let msg = { type: 'cmd', text, args, id: self.counter++ }
-    //console.log("chat: cmd:",msg)
+
+    // если мы выводим в лог, то в браузере отладка возможна
+    console.log("chat: cmd:",msg)
 
     //console.log("chat msg submitting msg=",msg)
   	message.submit( msg ) // там ее порисуют
