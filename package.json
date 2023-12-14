@@ -1,0 +1,15 @@
+{
+  "name": "chatbot.cl",
+  "version": "1.0.0",
+  "description": "Пакет чат-ботов",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "clon && npx vite build"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dom.cl": "github:pavelvasev/dom.cl"
+  }
+}

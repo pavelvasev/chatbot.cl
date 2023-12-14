@@ -1,7 +1,7 @@
 // это файл конфигурации clon-проекта.
 // подключаемые пакеты
 export var modules={
-  dom: {git:"https://github.com/pavelvasev/dom.cl"}
+  //dom: {git:"https://github.com/pavelvasev/dom.cl"}
   //lib3d: {git:"https://github.com/pavelvasev/cl2threejs"},
   //"sigma": "./module-sigma"
 }

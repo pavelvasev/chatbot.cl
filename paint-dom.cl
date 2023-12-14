@@ -1,6 +1,6 @@
 ////////////////////////////////// визуализация чата
 
-import dom="dom" cb="./main.cl"
+import dom="dom.cl" cb="./main.cl"
 
 mixin "tree_lift"
 process "chat_styles" {
