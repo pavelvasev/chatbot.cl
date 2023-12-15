@@ -49,6 +49,11 @@ process "chat_styles" {
     overflow-y: scroll;
     resize: vertical;
   }
+
+  .send_chat_messages textarea {
+    min-height: 20px;
+    max-height: 200px;
+  }
   `
   // F-EXPAND-CHAT resize: vertical
   // max-height: 200px;
@@ -214,7 +219,7 @@ process "send_chat_messages" {
     chat: const
   }
  
-  output := dom.row style="gap: 5px;" {
+  output := dom.row style="gap: 5px;" className="send_chat_messages" {
     // текстовый ввод
     txt: dom.textarea style="flex: 1; font-size: large;"
     //bind (dom.event @txt.output "change") @process
