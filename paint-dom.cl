@@ -221,11 +221,12 @@ process "send_chat_messages" {
  
   output := dom.row style="gap: 5px;" className="send_chat_messages" {
     // текстовый ввод
-    txt: dom.textarea style="flex: 1; font-size: large;"
+    txt: dom.textarea style="flex: 1; font-size: large;" rows=2
     //bind (dom.event @txt.output "change") @process
     bind @txt.enter @process
 
-    dom.textarea_auto_height @txt.output
+    // dom.textarea_auto_height @txt.output
+    // он плывет внутри flex-а этот метод.. так что сделаем пока rows=2 это стабильнее.
     // см также https://stackoverflow.com/questions/657795/how-to-remove-word-wrap-from-textarea
 
     btn: dom.element "button" "Ввод" style="flex: 0.25;"
